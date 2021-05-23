@@ -38,6 +38,7 @@ import org.apache.cassandra.exceptions.ConfigurationException;
 import org.apache.cassandra.io.util.ChannelProxy;
 import org.apache.cassandra.io.util.DataInputBuffer;
 import org.apache.cassandra.io.util.FileDataInput;
+import org.apache.cassandra.io.util.FileUtils;
 import org.apache.cassandra.io.util.RandomAccessReader;
 import org.apache.cassandra.io.util.RebufferingInputStream;
 import org.apache.cassandra.utils.JVMStabilityInspector;
@@ -459,7 +460,7 @@ public class CommitLogReader
         catch (Throwable t)
         {
             JVMStabilityInspector.inspectThrowable(t);
-            File f = File.createTempFile("mutation", "dat");
+            File f = FileUtils.createTempFile("mutation", "dat");
 
             try (DataOutputStream out = new DataOutputStream(new FileOutputStream(f)))
             {
